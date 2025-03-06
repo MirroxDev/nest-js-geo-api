@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
 import { PrismaClient } from '@prisma/client';
 
 const prisma: PrismaClient = new PrismaClient();
@@ -99,5 +97,5 @@ main()
     process.exit(1);
   })
   .finally(() => {
-    prisma.$disconnect();
+    void prisma.$disconnect();
   });

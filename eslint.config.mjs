@@ -6,33 +6,11 @@ import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
   {
-    ignores: ['eslint.config.mjs'],
-  },
-  eslint.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
-  eslintPluginPrettierRecommended,
-  {
-    languageOptions: {
-      globals: {
-        ...globals.node,
-        ...globals.jest,
-      },
-      ecmaVersion: 5,
-      sourceType: 'module',
-      parserOptions: {
-        projectService: true,
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
-  },
-  {
     rules: {
-      '@typescript-eslint/no-explicit-any': 'off', // Отключаем проверку на `any`
-      '@typescript-eslint/no-floating-promises': 'warn',
-      '@typescript-eslint/no-unsafe-argument': 'warn',
-      '@typescript-eslint/no-unsafe-assignment': 'off', // Отключаем проверку на небезопасное присваивание
-      '@typescript-eslint/no-unsafe-member-access': 'off', // Отключаем проверку на небезопасный доступ к членам
-      '@typescript-eslint/no-unsafe-call': 'off', // Отключаем проверку на небезопасный вызов
+      '@typescript-eslint/no-explicit-any': 'off',
     },
+  },
+  {
+    ignores: ['eslint.config.mjs'],
   },
 );
