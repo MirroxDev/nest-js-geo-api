@@ -6,12 +6,19 @@ import { CountryDto } from './dto/country.dto';
 export class CountriesService {
   constructor(private prisma: PrismaService) {}
 
-  async findAll(lang: string = 'en'): Promise<CountryDto[]> {
+  async findAll(
+    lang: string = 'en',
+    excludeCountryCodes: string[] = [],
+  ): Promise<CountryDto[]> {
     const countries = await this.prisma.countries.findMany();
 
-    return countries.map((country) => ({
+    const filteredCountries = countries.filter(
+      (country) => !excludeCountryCodes.includes(country.country_code),
+    );
+
+    return filteredCountries.map((country) => ({
       country_code: country.country_code,
-      name: this.getLocalizedName(country, lang)
+      name: this.getLocalizedName(country, lang),
     }));
   }
 
