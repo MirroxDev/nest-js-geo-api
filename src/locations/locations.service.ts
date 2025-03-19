@@ -15,11 +15,21 @@ export class LocationsService {
         },
         country_code: country_code,
       },
+      include: {
+        Countries: true,
+        Regions: true
+      },
       take: 20,
     });
 
+    console.log(locations)
+
     return locations.map((location) => ({
       osm_id: Number(location.osm_id),
+      country_code: location.country_code,
+      region_code: location.region_code,
+      country_name: this.getLocalizedName(location.Countries, lang),
+      region_name: this.getLocalizedName(location.Regions, lang),
       address_type: location.address_type,
       postal_code: location.postal_code || '',
       name: this.getLocalizedName(location, lang),

@@ -44,6 +44,19 @@ async function main() {
 
   await prisma.regions.create({
     data: {
+      region_code: 'UA-59',
+      country_code: 'ua',
+      name: 'Sumska oblast',
+      name_ua: 'Сумська область',
+      name_ru: 'Сумская область',
+      name_en: 'Sumy Reg.',
+      name_de: 'Sumy Obl.',
+      name_pl: 'Sumski obw.',
+    },
+  });
+
+  await prisma.regions.create({
+    data: {
       region_code: 'PL-14',
       country_code: 'pl',
       name: 'Мазовецкое воеводство',

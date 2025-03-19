@@ -9,8 +9,8 @@ datasource db {
 }
 
 model Countries {
-  country_code String      @id
-  created_at   DateTime    @default(now())
+  country_code String       @id
+  created_at   DateTime     @default(now())
   name         String
   name_ua      String
   name_ru      String?
@@ -24,25 +24,25 @@ model Countries {
 }
 
 model Regions {
-  region_code  String      @id
-  created_at   DateTime    @default(now())
-  country_code String?
+  region_code  String       @id
+  created_at   DateTime     @default(now())
+  country_code String
   name         String?
   name_ua      String?
   name_ru      String?
   name_en      String?
   name_de      String?
   name_pl      String?
-  Countries    Countries?  @relation(fields: [country_code], references: [country_code])
+  Countries    Countries    @relation(fields: [country_code], references: [country_code])
   Localities   Localities[]
 
   @@map("regions")
 }
 
 model Localities {
-  osm_id       BigInt      @id @default(autoincrement())
+  osm_id       BigInt    @id @default(autoincrement())
   country_code String
-  region_code  String?
+  region_code  String
   address_type String
   square       String?
   postal_code  String?
@@ -54,10 +54,10 @@ model Localities {
   name_pl      String?
   lat          Float
   lng          Float
-  created_at   DateTime    @default(now())
+  created_at   DateTime  @default(now())
   search_text  String?
-  Countries    Countries   @relation(fields: [country_code], references: [country_code])
-  Regions      Regions?    @relation(fields: [region_code], references: [region_code])
+  Countries    Countries @relation(fields: [country_code], references: [country_code])
+  Regions      Regions   @relation(fields: [region_code], references: [region_code])
 
   @@map("localities")
 }
