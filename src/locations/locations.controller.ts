@@ -21,7 +21,7 @@ export class LocationsController {
   })
   @ApiQuery({
     name: 'lang',
-    description: 'Язык ответа',
+    description: 'Язык результата ответов',
     example: 'ua',
     required: true
   })
