@@ -1,35 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { LocationDto } from './dto/location.dto';
+import { LocationDto, PrismaResponseLocationDto } from './dto/location.dto';
 import { Prisma } from '@prisma/client';
-
-interface RawLocation {
-  osm_id: bigint;
-  country_code: string;
-  region_code: string;
-  address_type: string;
-  postal_code: string | null;
-  name: string;
-  name_en: string;
-  name_ua: string;
-  name_ru: string;
-  name_de: string;
-  name_pl: string;
-  lat: number;
-  lng: number;
-  country_name_default: string;
-  region_name_default: string;
-  country_name_en: string;
-  country_name_ua: string;
-  country_name_ru: string;
-  country_name_de: string;
-  country_name_pl: string;
-  region_name_en: string;
-  region_name_ua: string;
-  region_name_ru: string;
-  region_name_de: string;
-  region_name_pl: string;
-}
 
 @Injectable()
 export class LocationsService {
@@ -54,7 +26,7 @@ export class LocationsService {
     //   },
     //   take: 20,
     // });
-    const locations = await this.prisma.$queryRaw<RawLocation[]>(Prisma.sql`
+    const locations = await this.prisma.$queryRaw<PrismaResponseLocationDto[]>(Prisma.sql`
       SELECT l.*, 
              c.name_en as country_name_en, c.name as country_name_default, c.name_en as country_name_en, c.name_ua as country_name_ua, c.name_ru as country_name_ru, c.name_de as country_name_de, c.name_pl as country_name_pl,
              r.name_en as region_name_en, r.name as region_name_default, r.name_ua as region_name_ua, r.name_ru as region_name_ru, r.name_de as region_name_de, r.name_pl as region_name_pl
