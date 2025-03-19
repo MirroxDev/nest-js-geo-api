@@ -22,8 +22,6 @@ export class LocationsService {
       take: 20,
     });
 
-    console.log(locations)
-
     return locations.map((location) => ({
       osm_id: Number(location.osm_id),
       country_code: location.country_code,
