@@ -69,6 +69,7 @@ async function main() {
       name_pl: 'Kijów',
       lat: 50.4501,
       lng: 30.5234,
+      search_text: 'Киев Kyiv Kiew Kijów',
     },
   });
 
@@ -85,6 +86,7 @@ async function main() {
       name_pl: 'Warszawa',
       lat: 52.2297,
       lng: 21.0122,
+      search_text: 'Варшава Warsaw Warschau Warszawa',
     },
   });
 
