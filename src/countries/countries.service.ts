@@ -11,9 +11,7 @@ export class CountriesService {
 
     return countries.map((country) => ({
       country_code: country.country_code,
-      name: country.name, // Название по умолчанию (например, на английском)
-      localized_name: this.getLocalizedName(country, lang), // Локализованное название
-      created_at: country.created_at,
+      name: this.getLocalizedName(country, lang)
     }));
   }
 
