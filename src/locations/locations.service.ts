@@ -45,6 +45,7 @@ export class LocationsService {
       region_code: location.region_code,
       country_name: this.getLocalizedName(
         {
+          name: location.country_name_default,
           name_en: location.country_name_en,
           name_ua: location.country_name_ua,
           name_ru: location.country_name_ru,
@@ -55,6 +56,7 @@ export class LocationsService {
       ),
       region_name: this.getLocalizedName(
         {
+          name: location.region_name_default,
           name_en: location.region_name_en,
           name_ua: location.region_name_ua,
           name_ru: location.region_name_ru,
