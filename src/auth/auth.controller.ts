@@ -41,8 +41,11 @@ export class AuthController {
     @CurrentUser('id', ParseIntPipe) userId: number,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const d = await this.authService.generateTokens(userId, res);
-    console.log(d);
-    return d;
+    return await this.authService.generateTokens(userId, res);
+  }
+
+  @Post('logout')
+  async logout(@Res({ passthrough: true }) res: Response) {
+    res.cookie('refreshToken', '', { httpOnly: true, secure: true });
   }
 }
