@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { RegisterDto } from './dto/register.dto';
 import { UsersService } from 'src/users/users.service';
-import { hash } from 'argon2';
+import { hash, verify } from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { Response } from 'express';
@@ -23,6 +23,25 @@ export class AuthService {
     });
 
     return await this.generateTokens(createdUser.id, res);
+  }
+
+  async validateUser(email: string, password: string) {
+    const userByEmail = await this.usersService.getOne({ email });
+
+    if (!userByEmail) {
+      return null;
+    }
+
+    const isPasswordValid = await verify(
+      userByEmail.hashedPassword,
+      password,
+    );
+
+    if (!isPasswordValid) {
+      return null;
+    }
+
+    return userByEmail;
   }
 
   //Private method
