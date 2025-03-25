@@ -30,6 +30,18 @@
 ```bash
 $ npm install
 ```
+## Env Example
+
+```bash
+DATABASE_URL=""
+DIRECT_URL=""
+
+JWT_ACCESS_SECRET=""
+JWT_ACCESS_EXPIRES=1d
+
+JWT_REFRESH_SECRET=""
+JWT_REFRESH_EXPIRES=7d
+```
 
 ## Compile and run the project
 

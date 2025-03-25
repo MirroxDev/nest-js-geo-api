@@ -1,7 +1,9 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { LocationsService } from './locations.service';
 import { ApiQuery } from '@nestjs/swagger';
+import { JwtAccessGuard } from 'src/auth/guards/jwt-access.guard';
 
+@UseGuards(JwtAccessGuard)
 @Controller('locations')
 export class LocationsController {
   constructor(private readonly locationsService: LocationsService) {}

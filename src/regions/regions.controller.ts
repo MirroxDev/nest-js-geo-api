@@ -1,7 +1,9 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { RegionsService } from './regions.service';
 import { RegionsDto } from './dto/region.dto';
+import { JwtAccessGuard } from 'src/auth/guards/jwt-access.guard';
 
+@UseGuards(JwtAccessGuard)
 @Controller('regions')
 export class RegionsController {
   constructor(private readonly regionsService: RegionsService) {}
