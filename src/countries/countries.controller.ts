@@ -1,8 +1,10 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { CountriesService } from './countries.service';
 import { CountryDto } from './dto/country.dto';
 import { ApiQuery } from '@nestjs/swagger';
+import { JwtAccessGuard } from 'src/auth/guards/jwt-access.guard';
 
+@UseGuards(JwtAccessGuard)
 @Controller('countries')
 export class CountriesController {
   constructor(private readonly countriesService: CountriesService) {}
